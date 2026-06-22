@@ -1,7 +1,14 @@
 package com.tiasa.rbac_app.entity;
 
-import jakarta.persistence.*;
-import lombok.*;
+import com.tiasa.rbac_app.common.audit.BaseEntity;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 
 @Entity
 @Table(name = "permissions")
@@ -9,14 +16,11 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
-public class Permission {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+@SuperBuilder
+public class Permission extends BaseEntity {
 
     @Column(nullable = false, unique = true)
     private String name;
+
     private String description;
 }

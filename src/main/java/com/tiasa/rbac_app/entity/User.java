@@ -1,9 +1,16 @@
 package com.tiasa.rbac_app.entity;
 
+import com.tiasa.rbac_app.common.audit.BaseEntity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.experimental.SuperBuilder;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -13,12 +20,8 @@ import java.util.Set;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
-public class User {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+@SuperBuilder
+public class User extends BaseEntity {
 
     @NotBlank
     @Column(nullable = false)
@@ -31,7 +34,7 @@ public class User {
 
     @NotBlank
     @Column(nullable = false)
-    private String password; // akan di-hash dengan BCrypt nanti
+    private String password;
 
     private boolean enabled = true;
 
